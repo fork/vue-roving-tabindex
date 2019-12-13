@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Use rollup to create a transpiled bundle
+
 ## 1.1.0 - 2019-11-05
 
 ### Added

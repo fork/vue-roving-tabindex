@@ -13,20 +13,28 @@
   ],
   "license": "MIT",
   "author": "Fork Unstable Media GmbH <obj@fork.de>",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/fork/vue-roving-tabindex.git"
   },
   "scripts": {
+    "build": "rollup -c",
     "preversion": "kacl prerelease",
     "version": "kacl release && prettier --write CHANGELOG.md && git add CHANGELOG.md"
   },
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "vue": "2.x"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
     "@brightcove/kacl": "^0.1.8",
-    "prettier": "^1.18.2"
+    "prettier": "^1.19.1",
+    "rollup": "^1.27.12",
+    "rollup-plugin-babel": "^4.3.3"
   }
 }
