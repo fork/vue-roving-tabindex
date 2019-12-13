@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2019-12-13
+
 ### Changed
 
 - Use rollup to create a transpiled bundle
@@ -17,4 +19,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release!
 
-[unreleased]: https://github.com/fork/vue-roving-tabindex/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/fork/vue-roving-tabindex/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/fork/vue-roving-tabindex/compare/v1.1.0...v1.2.0
