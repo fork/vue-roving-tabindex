@@ -43,7 +43,7 @@ This directive should be used on every focussable element inside a `v-roving-tab
 Its value can be set to `false` to remove the element from the roving tabindex:
 
 ```vue
-<button type="button" v-roving-tabindex="false />
+<button type="button" v-roving-tabindex="false" />
 ```
 
 ## Related work
