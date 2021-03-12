@@ -43,14 +43,14 @@ const onKeydown = (ev) => {
   const keyNext = isRTL
     ? isHorizontal
       ? "ArrowLeft"
-      : "ArrowUp"
+      : "ArrowDown"
     : isHorizontal
     ? "ArrowRight"
     : "ArrowDown";
   const keyPrev = isRTL
     ? isHorizontal
       ? "ArrowRight"
-      : "ArrowDown"
+      : "ArrowUp"
     : isHorizontal
     ? "ArrowLeft"
     : "ArrowUp";
