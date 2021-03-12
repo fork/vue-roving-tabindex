@@ -1,4 +1,4 @@
-import Vue from "vue";
+import { nextTick } from "vue";
 
 import { ATTR_CONTAINER, ATTR_ITEM } from "./constants";
 import { getContainerConfig } from "./RovingTabindexContainer";
@@ -8,11 +8,11 @@ import { getContainerConfig } from "./RovingTabindexContainer";
  * @param {HTMLElement} el - Current [data-roving-tabindex] element
  * @returns {HTMLElement[]} Sibling tabindex elements
  */
-const getSiblings = el =>
+const getSiblings = (el) =>
   Array.from(
     el.closest(`[${ATTR_CONTAINER}]`).querySelectorAll(`[${ATTR_ITEM}]`)
   ).filter(
-    $el =>
+    ($el) =>
       $el.closest(`[${ATTR_CONTAINER}]`) === el.closest(`[${ATTR_CONTAINER}]`)
   );
 
@@ -25,7 +25,7 @@ const getSiblings = el =>
  */
 const goTo = ($siblings, idx) => {
   const $next = $siblings.slice(idx % $siblings.length)[0];
-  $siblings.forEach($sibling =>
+  $siblings.forEach(($sibling) =>
     $sibling.setAttribute("tabindex", $sibling === $next ? "0" : "-1")
   );
   $next.focus();
@@ -36,7 +36,7 @@ const goTo = ($siblings, idx) => {
  * @param {KeyboardEvent} ev - Event handler
  * @returns {void}
  */
-const onKeydown = ev => {
+const onKeydown = (ev) => {
   const { isHorizontal } = getContainerConfig(ev.target);
 
   // Get our desired keys
@@ -86,7 +86,7 @@ const onKeydown = ev => {
  * @param {MouseEvent} ev - Event handler
  * @returns {void}
  */
-const onClick = ev => {
+const onClick = (ev) => {
   const $siblings = getSiblings(ev.target);
   const cur = $siblings.indexOf(ev.target);
   goTo($siblings, cur);
@@ -97,13 +97,13 @@ const onClick = ev => {
  * @param {HTMLElement} el - Element that should be in a roving tabindex
  * @returns {void}
  */
-const bindRovingTabindex = el => {
+const bindRovingTabindex = (el) => {
   el.setAttribute(ATTR_ITEM, "");
   // el.addEventListener("click", onClick);
   el.addEventListener("keydown", onKeydown);
 
   // Initialise the tabindex
-  Vue.nextTick(() => {
+  nextTick().then(() => {
     const $siblings = getSiblings(el);
     el.setAttribute("tabindex", $siblings.indexOf(el) === 0 ? "0" : "-1");
   });
@@ -114,7 +114,7 @@ const bindRovingTabindex = el => {
  * @param {HTMLElement} el - Element that should unregistered
  * @returns {void}
  */
-const unbindRovingTabindex = el => {
+const unbindRovingTabindex = (el) => {
   el.removeAttribute(ATTR_ITEM);
   el.removeAttribute("tabindex");
   // el.removeEventListener("click", onClick);
@@ -122,12 +122,12 @@ const unbindRovingTabindex = el => {
 };
 
 const RovingTabindex = {
-  bind(el, { value = true }) {
+  mounted(el, { value = true }) {
     if (value) {
       bindRovingTabindex(el);
     }
   },
-  update(el, { value = true, oldValue = true }) {
+  updated(el, { value = true, oldValue = true }) {
     if (value !== oldValue) {
       unbindRovingTabindex(el);
 
@@ -136,9 +136,9 @@ const RovingTabindex = {
       }
     }
   },
-  unbind(el) {
+  unmounted(el) {
     unbindRovingTabindex(el);
-  }
+  },
 };
 
 export default RovingTabindex;

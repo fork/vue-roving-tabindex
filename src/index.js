@@ -1,12 +1,10 @@
-import Vue from "vue";
-
 import RovingTabindex from "./RovingTabindex";
 import RovingTabindexContainer from "./RovingTabindexContainer";
 
 const VueRovingTabindex = {
-  install() {
-    Vue.directive("roving-tabindex-container", RovingTabindexContainer);
-    Vue.directive("roving-tabindex", RovingTabindex);
+  install(app, options) {
+    app.directive("roving-tabindex-container", RovingTabindexContainer);
+    app.directive("roving-tabindex", RovingTabindex);
   }
 };
 

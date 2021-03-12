@@ -7,7 +7,7 @@ const containers = new WeakMap();
  * @param {HTMLElement} el - Current [data-roving-tabindex] element
  * @returns {Object} Container config
  */
-export const getContainerConfig = el =>
+export const getContainerConfig = (el) =>
   containers.get(el.closest(`[${ATTR_CONTAINER}]`));
 
 /**
@@ -21,7 +21,7 @@ const bindContainer = (el, modifiers) => {
 
   const isHorizontal = modifiers.horizontal;
   containers.set(el, {
-    isHorizontal
+    isHorizontal,
   });
 };
 
@@ -30,21 +30,21 @@ const bindContainer = (el, modifiers) => {
  * @param {HTMLElement} el - Element that should be unregistered
  * @returns {void}
  */
-const unbindContainer = el => {
+const unbindContainer = (el) => {
   el.removeAttribute(ATTR_CONTAINER);
   containers.delete(el);
 };
 
 const RovingTabindexContainer = {
-  bind(el, { modifiers }) {
+  mounted(el, { modifiers }) {
     bindContainer(el, modifiers);
   },
-  update(el, { modifiers }) {
+  updated(el, { modifiers }) {
     bindContainer(el, modifiers);
   },
-  unbind(el) {
+  unmounted(el) {
     unbindContainer(el);
-  }
+  },
 };
 
 export default RovingTabindexContainer;
