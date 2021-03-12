@@ -32,10 +32,10 @@ The package provides two Vue directives:
 
 This directive denotes the boundary of a roving tabindex sequence. Add it to a parent element of the `v-roving-tabindex` elements.
 
-It has a single boolean modifier to change the direction from vertical to horizontal:
+It has a boolean arg to change the direction from vertical to horizontal:
 
 ```vue
-<div v-roving-tabindex-container.horizontal />
+<div v-roving-tabindex-container:horizontal />
 ```
 
 ### v-roving-tabindex
