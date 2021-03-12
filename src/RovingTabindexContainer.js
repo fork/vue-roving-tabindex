@@ -13,13 +13,14 @@ export const getContainerConfig = (el) =>
 /**
  * Register an element as roving tabindex container
  * @param {HTMLElement} el - Element that should be a roving tabindex container
- * @param {Object} modifiers - Vue Directive Modifiers
+ * @param {Object} arg - Vue Directive arg
  * @returns {void}
  */
-const bindContainer = (el, modifiers, { direction }) => {
+const bindContainer = (el, arg, { direction }) => {
+  console.log("arg -> ", arg);
   el.setAttribute(ATTR_CONTAINER, "");
 
-  const isHorizontal = modifiers.horizontal;
+  const isHorizontal = arg === "horizontal";
   const isRTL = direction === "rtl";
   containers.set(el, {
     isHorizontal,
@@ -39,11 +40,11 @@ const unbindContainer = (el) => {
 
 const ApplyRovingTabindexContainer = ({ direction }) => {
   return {
-    mounted(el, { modifiers }) {
-      bindContainer(el, modifiers, { direction });
+    mounted(el, { arg = {} }) {
+      bindContainer(el, arg, { direction });
     },
-    updated(el, { modifiers }) {
-      bindContainer(el, modifiers, { direction });
+    updated(el, { arg = {} }) {
+      bindContainer(el, arg, { direction });
     },
     unmounted(el) {
       unbindContainer(el);
