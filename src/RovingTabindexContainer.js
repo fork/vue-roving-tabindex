@@ -17,7 +17,6 @@ export const getContainerConfig = (el) =>
  * @returns {void}
  */
 const bindContainer = (el, arg, { direction }) => {
-  console.log("arg -> ", arg);
   el.setAttribute(ATTR_CONTAINER, "");
 
   const isHorizontal = arg === "horizontal";
