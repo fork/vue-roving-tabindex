@@ -12,7 +12,7 @@ export const getContainerConfig = (el) =>
 
 /**
  * Register an element as roving tabindex container
- * @param {HTMLElement} el - Element that shold be a roving tabindex container
+ * @param {HTMLElement} el - Element that should be a roving tabindex container
  * @param {Object} modifiers - Vue Directive Modifiers
  * @returns {void}
  */

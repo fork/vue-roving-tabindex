@@ -111,10 +111,9 @@ const onClick = (ev) => {
  */
 const bindRovingTabindex = (el) => {
   el.setAttribute(ATTR_ITEM, "");
-  // el.addEventListener("click", onClick);
   el.addEventListener("keydown", onKeydown);
 
-  // Initialise the tabindex
+  // Initialize the tabindex
   nextTick().then(() => {
     const $siblings = getSiblings(el);
     el.setAttribute("tabindex", $siblings.indexOf(el) === 0 ? "0" : "-1");
@@ -129,7 +128,6 @@ const bindRovingTabindex = (el) => {
 const unbindRovingTabindex = (el) => {
   el.removeAttribute(ATTR_ITEM);
   el.removeAttribute("tabindex");
-  // el.removeEventListener("click", onClick);
   el.removeEventListener("keydown", onKeydown);
 };
 
