@@ -1,12 +1,15 @@
-import RovingTabindex from "./RovingTabindex";
-import RovingTabindexContainer from "./RovingTabindexContainer";
+import ApplyRovingTabindex from "./RovingTabindex";
+import ApplyRovingTabindexContainer from "./RovingTabindexContainer";
 
 const VueRovingTabindex = {
-  install(app, options) {
-    app.directive("roving-tabindex-container", RovingTabindexContainer);
-    app.directive("roving-tabindex", RovingTabindex);
-  }
+  install(app, { direction }) {
+    app.directive(
+      "roving-tabindex-container",
+      ApplyRovingTabindexContainer({ direction })
+    );
+    app.directive("roving-tabindex", ApplyRovingTabindex());
+  },
 };
 
 export default VueRovingTabindex;
-export { RovingTabindexContainer, RovingTabindex };
+export { ApplyRovingTabindexContainer, ApplyRovingTabindex };

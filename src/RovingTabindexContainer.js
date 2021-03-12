@@ -16,12 +16,14 @@ export const getContainerConfig = (el) =>
  * @param {Object} modifiers - Vue Directive Modifiers
  * @returns {void}
  */
-const bindContainer = (el, modifiers) => {
+const bindContainer = (el, modifiers, { direction }) => {
   el.setAttribute(ATTR_CONTAINER, "");
 
   const isHorizontal = modifiers.horizontal;
+  const isRTL = direction === "rtl";
   containers.set(el, {
     isHorizontal,
+    isRTL,
   });
 };
 
@@ -35,16 +37,18 @@ const unbindContainer = (el) => {
   containers.delete(el);
 };
 
-const RovingTabindexContainer = {
-  mounted(el, { modifiers }) {
-    bindContainer(el, modifiers);
-  },
-  updated(el, { modifiers }) {
-    bindContainer(el, modifiers);
-  },
-  unmounted(el) {
-    unbindContainer(el);
-  },
+const ApplyRovingTabindexContainer = ({ direction }) => {
+  return {
+    mounted(el, { modifiers }) {
+      bindContainer(el, modifiers, { direction });
+    },
+    updated(el, { modifiers }) {
+      bindContainer(el, modifiers, { direction });
+    },
+    unmounted(el) {
+      unbindContainer(el);
+    },
+  };
 };
 
-export default RovingTabindexContainer;
+export default ApplyRovingTabindexContainer;

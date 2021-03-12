@@ -37,11 +37,23 @@ const goTo = ($siblings, idx) => {
  * @returns {void}
  */
 const onKeydown = (ev) => {
-  const { isHorizontal } = getContainerConfig(ev.target);
+  const { isHorizontal, isRTL } = getContainerConfig(ev.target);
 
   // Get our desired keys
-  const keyNext = isHorizontal ? "ArrowRight" : "ArrowDown";
-  const keyPrev = isHorizontal ? "ArrowLeft" : "ArrowUp";
+  const keyNext = isRTL
+    ? isHorizontal
+      ? "ArrowLeft"
+      : "ArrowUp"
+    : isHorizontal
+    ? "ArrowRight"
+    : "ArrowDown";
+  const keyPrev = isRTL
+    ? isHorizontal
+      ? "ArrowRight"
+      : "ArrowDown"
+    : isHorizontal
+    ? "ArrowLeft"
+    : "ArrowUp";
 
   switch (ev.key) {
     case keyPrev: {
@@ -121,24 +133,26 @@ const unbindRovingTabindex = (el) => {
   el.removeEventListener("keydown", onKeydown);
 };
 
-const RovingTabindex = {
-  mounted(el, { value = true }) {
-    if (value) {
-      bindRovingTabindex(el);
-    }
-  },
-  updated(el, { value = true, oldValue = true }) {
-    if (value !== oldValue) {
-      unbindRovingTabindex(el);
-
+const ApplyRovingTabindex = () => {
+  return {
+    mounted(el, { value = true }) {
       if (value) {
         bindRovingTabindex(el);
       }
-    }
-  },
-  unmounted(el) {
-    unbindRovingTabindex(el);
-  },
+    },
+    updated(el, { value = true, oldValue = true }) {
+      if (value !== oldValue) {
+        unbindRovingTabindex(el);
+
+        if (value) {
+          bindRovingTabindex(el);
+        }
+      }
+    },
+    unmounted(el) {
+      unbindRovingTabindex(el);
+    },
+  };
 };
 
-export default RovingTabindex;
+export default ApplyRovingTabindex;
