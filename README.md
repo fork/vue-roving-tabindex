@@ -7,7 +7,9 @@ Add a roving tabindex to a Vue component. This is useful to implement keyboard n
 ```javascript
 import VueRovingTabindex from "@4rk/vue-roving-tabindex";
 
-Vue.use(VueRovingTabindex);
+app.use(VueRovingTabindex, {
+    direction: "ltr" | "rtl" // default: "ltr"
+});
 ```
 
 ## Usage
@@ -38,7 +40,7 @@ It has a single boolean modifier to change the direction from vertical to horizo
 
 ### v-roving-tabindex
 
-This directive should be used on every focussable element inside a `v-roving-tabindex-container` that is part of the roving tabindex.
+This directive should be used on every focusable element inside a `v-roving-tabindex-container` that is part of the roving tabindex.
 
 Its value can be set to `false` to remove the element from the roving tabindex:
 
