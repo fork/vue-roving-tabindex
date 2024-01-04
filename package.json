@@ -1,6 +1,6 @@
 {
   "name": "@4rk/vue-roving-tabindex",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Add a roving tabindex to a Vue component",
   "keywords": [
     "vue",
@@ -27,7 +27,7 @@
     "dist"
   ],
   "peerDependencies": {
-    "vue": "2.x"
+    "vue": "3.x"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

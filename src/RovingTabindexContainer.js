@@ -36,13 +36,13 @@ const unbindContainer = el => {
 };
 
 const RovingTabindexContainer = {
-  bind(el, { modifiers }) {
+  beforeMount(el, { modifiers }) {
     bindContainer(el, modifiers);
   },
-  update(el, { modifiers }) {
+  updated(el, { modifiers }) {
     bindContainer(el, modifiers);
   },
-  unbind(el) {
+  unmounted(el) {
     unbindContainer(el);
   }
 };

@@ -7,7 +7,7 @@ Add a roving tabindex to a Vue component. This is useful to implement keyboard n
 ```javascript
 import VueRovingTabindex from "@4rk/vue-roving-tabindex";
 
-Vue.use(VueRovingTabindex);
+app.use(VueRovingTabindex);
 ```
 
 ## Usage

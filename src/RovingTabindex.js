@@ -1,4 +1,4 @@
-import Vue from "vue";
+import { nextTick } from "vue";
 
 import { ATTR_CONTAINER, ATTR_ITEM } from "./constants";
 import { getContainerConfig } from "./RovingTabindexContainer";
@@ -103,7 +103,7 @@ const bindRovingTabindex = el => {
   el.addEventListener("keydown", onKeydown);
 
   // Initialise the tabindex
-  Vue.nextTick(() => {
+  nextTick(() => {
     const $siblings = getSiblings(el);
     el.setAttribute("tabindex", $siblings.indexOf(el) === 0 ? "0" : "-1");
   });
@@ -122,12 +122,12 @@ const unbindRovingTabindex = el => {
 };
 
 const RovingTabindex = {
-  bind(el, { value = true }) {
+  beforeMount(el, { value = true }) {
     if (value) {
       bindRovingTabindex(el);
     }
   },
-  update(el, { value = true, oldValue = true }) {
+  updated(el, { value = true, oldValue = true }) {
     if (value !== oldValue) {
       unbindRovingTabindex(el);
 
@@ -136,7 +136,7 @@ const RovingTabindex = {
       }
     }
   },
-  unbind(el) {
+  unmounted(el) {
     unbindRovingTabindex(el);
   }
 };
